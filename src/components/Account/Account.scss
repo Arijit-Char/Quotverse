@@ -1,0 +1,22 @@
+.account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  .profilepic {
+    height: 5rem;
+    width: 5rem;
+    .pp {
+      width: auto;
+      height: 10vh;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+  .name-user {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

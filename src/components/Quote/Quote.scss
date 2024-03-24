@@ -1,0 +1,30 @@
+.quote {
+  width: 60%;
+  height: 35vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2rem;
+
+  .pic {
+    height: 5rem;
+    width: 5rem;
+    .pp {
+      width: auto;
+      height: 5vh;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .lss {
+    button {
+      background-color: black;
+    }
+  }
+}
