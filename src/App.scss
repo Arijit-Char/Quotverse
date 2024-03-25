@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   background: black;
- 
 }
 .heading {
   height: 8vh;
@@ -51,6 +50,7 @@
     justify-content: space-between;
     overflow-y: scroll;
     gap: 3.2rem;
+    border-radius: 1rem;
   }
   .quote-section::-webkit-scrollbar {
     display: none;
