@@ -10,6 +10,16 @@ export const getQuote = (page) => async (dispatch) => {
         dispatch({ type: 'Get_Quote_Failure', payload: error.response.data.message });
     }
 };
+export const getTrending = () => async (dispatch) => {
+    try {
+        dispatch({ type: 'Get_Trending_Request' });
+        const  {data}  = await axios.get("https://api.quotable.io/tags?sortBy=quoteCount");
+
+        dispatch({ type: 'Get_Trending_Success', payload: data });
+    } catch (error) {
+        dispatch({ type: 'Get_Trending_Failure', payload: error.response.data.message });
+    }
+};
 export const getLikes = (id) => async (dispatch) => {
     try {
         dispatch({ type: 'Get_Like_Success', payload: id });

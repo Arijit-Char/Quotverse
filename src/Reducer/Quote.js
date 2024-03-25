@@ -21,6 +21,21 @@ export const Reducer = createReducer(initialState, (builder) => {
             state.error = action.payload;
         });
 });
+export const TrendingReducer = createReducer(initialState, (builder) => {
+    builder
+        .addCase('Get_Trending_Request', (state) => {
+            state.loading = true;
+        })
+        .addCase('Get_Trending_Success', (state, action) => {
+
+            state.loading = false;
+            state.trend = action.payload;
+        })
+        .addCase('Get_Trending_Failure', (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        });
+});
 export const LikeReducer = createReducer(initialLikeState, (builder) => {
     builder
 

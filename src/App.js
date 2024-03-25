@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.scss";
 import Account from "./components/Account/Account";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuote } from "./action/Quote";
+import { getQuote, getTrending } from "./action/Quote";
 import Quote from "./components/Quote/Quote";
 import "./components/Header/Header.scss";
 import { FaHome } from "react-icons/fa";
@@ -24,16 +24,21 @@ function App() {
   useEffect(() => {
     dispatch(getQuote(page));
   }, [dispatch, page]);
+  useEffect(() => {
+    dispatch(getTrending());
+  }, [dispatch]);
 
   const user = useSelector((state) => state.quote.quote);
 
   useEffect(() => {
-    if (user) {
+    if (user && quotes) {
       const uniqueUser = user.filter(
         (item) => !quotes.some((quote) => quote._id === item._id)
       );
 
-      setQuotes((prevQuotes) => [...prevQuotes, ...uniqueUser]);
+      if (uniqueUser.length > 0) {
+        setQuotes((prevQuotes) => [...prevQuotes, ...uniqueUser]);
+      }
     }
   }, [user, quotes, page]);
 
@@ -59,7 +64,7 @@ function App() {
           setTimeout(() => {
             setPage(page + 1);
             setLoading(false);
-          }, 1000);
+          }, 500);
         }
       }
     });
