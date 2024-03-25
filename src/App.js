@@ -34,11 +34,12 @@ function App() {
   }, [user, page]);
 
   useEffect(() => {
-    const modArray = quotes.filter((quote) => likedArray.includes(quote._id));
-    const mySet = new Set(modArray);
-    setnewLikedArray([...mySet]);
+    if (likedArray && quotes.length > 0) {
+      const modArray = quotes.filter((quote) => likedArray.includes(quote._id));
+      const uniqueLikedQuotes = Array.from(new Set(modArray));
+      setnewLikedArray(uniqueLikedQuotes);
+    }
   }, [likedArray, quotes]);
-  
 
   if (!user) {
     return <div>Loading...</div>;
@@ -66,7 +67,7 @@ function App() {
   if (!likedArray) {
     return <div>Loading...</div>;
   }
-  
+
   return (
     <div className="App">
       <div className="heading">
@@ -119,6 +120,7 @@ function App() {
               ))}
           {loading && <div>Loading...</div>}
         </div>
+
         <div className="trending-section home">trending</div>
       </div>
     </div>
