@@ -7,6 +7,7 @@ import Quote from "./components/Quote/Quote";
 import "./components/Header/Header.scss";
 import { FaHome } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+import Trending from "./components/Trending/Trending";
 
 function App() {
   const likedArray = useSelector((state) => state.likes.likedarray);
@@ -29,6 +30,7 @@ function App() {
   }, [dispatch]);
 
   const user = useSelector((state) => state.quote.quote);
+  const TrendingArray = useSelector((state) => state.trending.trend);
 
   useEffect(() => {
     if (user && quotes) {
@@ -101,7 +103,9 @@ function App() {
       );
     }
   };
-
+if(!TrendingArray){
+  return <div>Loading...</div>;
+};
   return (
     <div className="App">
       <div className="heading">
@@ -161,7 +165,7 @@ function App() {
             ))}
           {loading && <div>Loading...</div>}
         </div>
-        <div className="trending-section home">trending</div>
+        <div className="trending-section home"><Trending Tarray={TrendingArray}/></div>
       </div>
     </div>
   );
