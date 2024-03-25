@@ -19,7 +19,11 @@ function App() {
   const [homeLoading, setHomeLoading] = useState(true);
 
   const quoteSectionRef = useRef(null);
-
+  useEffect(() => {
+    if (!home && quoteSectionRef.current) {
+      quoteSectionRef.current.scrollTop = 0;
+    }
+  }, [home]);
   useEffect(() => {
     dispatch(getQuote(page));
   }, [dispatch, page]);
@@ -28,10 +32,13 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      const unique = [...new Set(user.map((item) => item))];
-      setQuotes((prevQuotes) => [...prevQuotes, ...unique]);
+      const uniqueUser = user.filter(
+        (item) => !quotes.some((quote) => quote._id === item._id)
+      );
+
+      setQuotes((prevQuotes) => [...prevQuotes, ...uniqueUser]);
     }
-  }, [user, page]);
+  }, [user, quotes, page]);
 
   useEffect(() => {
     if (likedArray && quotes.length > 0) {
@@ -75,6 +82,7 @@ function App() {
           <div className="title">title</div>
           <div className="homelike">
             <button
+              style={{ color: home ? "Green" : "inherit" }}
               onClick={() => {
                 setHome(true);
                 setHomeLoading(true);
@@ -83,6 +91,7 @@ function App() {
               <FaHome />
             </button>
             <button
+              style={{ color: !home ? "red" : "inherit" }}
               onClick={() => {
                 setHome(false);
                 setHomeLoading(false);
