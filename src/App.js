@@ -17,13 +17,10 @@ function App() {
   const [home, setHome] = useState(true);
   const [newLikedArray, setnewLikedArray] = useState([]);
   const [homeLoading, setHomeLoading] = useState(true);
+  const [comments, setComments] = useState({});
 
   const quoteSectionRef = useRef(null);
-  useEffect(() => {
-    if (!home && quoteSectionRef.current) {
-      quoteSectionRef.current.scrollTop = 0;
-    }
-  }, [home]);
+
   useEffect(() => {
     dispatch(getQuote(page));
   }, [dispatch, page]);
@@ -75,6 +72,31 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  const handleCommentChange = (quoteId, event) => {
+    const { value } = event.target;
+    setComments((prevComments) => ({
+      ...prevComments,
+      [quoteId]: value,
+    }));
+  };
+
+  const addComment = (quoteId) => {
+    const commentText = comments[quoteId];
+    if (commentText.trim() !== "") {
+      setComments((prevComments) => ({
+        ...prevComments,
+        [quoteId]: "",
+      }));
+      setQuotes((prevQuotes) =>
+        prevQuotes.map((quote) =>
+          quote._id === quoteId
+            ? { ...quote, comments: [...(quote.comments || []), commentText] }
+            : quote
+        )
+      );
+    }
+  };
+
   return (
     <div className="App">
       <div className="heading">
@@ -109,27 +131,31 @@ function App() {
         </div>
         <div className="quote-section home" ref={quoteSectionRef}>
           {home
-            ? quotes.map((quote, index) => (
-                <Quote
-                  key={index}
-                  id={quote._id}
-                  author={quote.author}
-                  quote={quote.content}
-                  tag={quote.tags[0]}
-                />
-              ))
-            : newLikedArray.map((quote, index) => (
-                <Quote
-                  key={index}
-                  id={quote._id}
-                  author={quote.author}
-                  quote={quote.content}
-                  tag={quote.tags[0]}
-                />
-              ))}
+            ? quotes.map((quote) => (
+              <Quote
+                key={quote._id}
+                id={quote._id}
+                author={quote.author}
+                quote={quote.content}
+                tag={quote.tags[0]}
+                comments={quote.comments || []}
+                onCommentChange={handleCommentChange}
+                onAddComment={addComment}
+              />
+            ))
+            : newLikedArray.map((quote) => (
+              <Quote
+                key={quote._id}
+                id={quote._id}
+                author={quote.author}
+                quote={quote.content}
+                tag={quote.tags[0]}
+                comments={quote.comments || []}
+
+              />
+            ))}
           {loading && <div>Loading...</div>}
         </div>
-
         <div className="trending-section home">trending</div>
       </div>
     </div>

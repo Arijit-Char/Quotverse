@@ -2,15 +2,24 @@ import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
 import { PiTelegramLogo } from "react-icons/pi";
-import { useDispatch} from "react-redux";
-
-import "./Quote.scss";
+import { useDispatch } from "react-redux";
 import { getLikes, getUnLikes } from "../../action/Quote";
 
-export default function Quote({ id, author, quote, tag }) {
-  const dispatch = useDispatch();
+import "./Quote.scss";
 
+export default function Quote({
+  id,
+  author,
+  quote,
+  tag,
+  comments,
+  onCommentChange,
+  onAddComment,
+}) {
+  const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [comment, setComment] = useState("");
 
   const toggleLike = () => {
     setLiked(!liked);
@@ -19,6 +28,25 @@ export default function Quote({ id, author, quote, tag }) {
     } else {
       dispatch(getLikes(id));
     }
+  };
+
+  const shareQuote = () => {
+    const shareText = `"${quote}" - ${author}`;
+    navigator.share({ text: shareText });
+  };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+    onCommentChange(id, event);
+  };
+
+  const addComment = () => {
+    onAddComment(id);
+    setShowCommentForm(false);
+  };
+
+  const toggleCommentForm = () => {
+    setShowCommentForm(!showCommentForm);
   };
 
   return (
@@ -38,12 +66,30 @@ export default function Quote({ id, author, quote, tag }) {
               <FaRegHeart style={{ color: "white" }} />
             )}
           </button>
-          <button>
+          <button onClick={toggleCommentForm}>
             <FaRegComment style={{ color: "white" }} />
           </button>
-          <button>
+          <button onClick={shareQuote}>
             <PiTelegramLogo style={{ color: "white" }} />
           </button>
+        </div>
+        {showCommentForm && (
+          <div className="comment-form">
+            <textarea
+              rows="3"
+              placeholder="Add a comment..."
+              value={comment}
+              onChange={handleCommentChange}
+            ></textarea>
+            <button onClick={addComment}>Comment</button>
+          </div>
+        )}
+        <div className="comments">
+          {comments.map((comment, index) => (
+            <div key={index} className="comment">
+              {comment}
+            </div>
+          ))}
         </div>
       </div>
     </div>
