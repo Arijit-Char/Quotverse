@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { Reducer } from "./Reducer/Quote";
+import { LikeReducer, Reducer } from "./Reducer/Quote";
 const store = configureStore({
     reducer: {
         quote: Reducer,
+        likes: LikeReducer,
     }
 });
 export default store;

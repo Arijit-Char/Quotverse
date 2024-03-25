@@ -7,6 +7,7 @@ import { getQuote } from "./action/Quote";
 import Quote from "./components/Quote/Quote";
 
 function App() {
+  const likedArray = useSelector((state) => state.likes.likedarray);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -29,7 +30,6 @@ function App() {
     return <div>Loading...</div>;
   }
 
-
   if (quoteSectionRef.current) {
     quoteSectionRef.current.addEventListener("scroll", () => {
       const { scrollTop, scrollHeight, clientHeight } = quoteSectionRef.current;
@@ -44,12 +44,12 @@ function App() {
     });
   }
 
-
-
   if (!quotes.length) {
     return <div>Loading...</div>;
   }
-
+  if (!likedArray) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="App">
       <div className="heading">
