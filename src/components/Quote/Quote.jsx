@@ -4,7 +4,6 @@ import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
 import { PiTelegramLogo } from "react-icons/pi";
 import { useDispatch } from "react-redux";
 import { getLikes, getUnLikes } from "../../action/Quote";
-
 import "./Quote.scss";
 
 export default function Quote({
@@ -80,8 +79,11 @@ export default function Quote({
               placeholder="Add a comment..."
               value={comment}
               onChange={handleCommentChange}
+              className="comment-box"
             ></textarea>
-            <button onClick={addComment}>Comment</button>
+            <button onClick={addComment} className="comment-button">
+              Comment
+            </button>
           </div>
         )}
         <div className="comments">
