@@ -5,10 +5,11 @@
   flex-direction: row;
   align-items: center;
   margin-top: 2rem;
-
+  color: white;
   .pic {
     height: 5rem;
     width: 5rem;
+    color: white;
     .pp {
       width: auto;
       height: 5vh;
@@ -27,4 +28,10 @@
       background-color: black;
     }
   }
+}
+
+.like {
+  z-index: 999;
+  color: red !important;
+  font-size: 1.2em;
 }

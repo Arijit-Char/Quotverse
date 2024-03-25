@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import { FaRegHeart  } from "react-icons/fa";
-import { TbShare3 } from "react-icons/tb";
-import { FaRegComment } from "react-icons/fa";
+import { FaRegHeart, FaHeart, FaRegComment  } from "react-icons/fa";
+import { PiTelegramLogo } from "react-icons/pi";
 
 import "./Quote.scss";
-export default function Quote({author,quote,tag}) {
+
+export default function Quote({ author, quote, tag }) {
+  const [liked, setLiked] = useState(false);
+
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
   return (
     <div className="quote">
       <div className="pic">
@@ -16,9 +22,15 @@ export default function Quote({author,quote,tag}) {
         <div className="quotes">{quote}</div>
         <div className="tag">{tag}</div>
         <div className="lss">
-          <button><FaRegHeart /></button>
-          <button><TbShare3 /></button>
-          <button><FaRegComment /></button>
+          <button onClick={toggleLike}>
+            {liked ? <FaHeart style={{ color: "red" , fontSize:"1.2rem"}} /> : <FaRegHeart style={{ color: "white" }}/>}
+          </button>
+          <button>
+            <FaRegComment style={{ color: "white" }}/>
+          </button>
+          <button>
+            <PiTelegramLogo  style={{ color: "white" }}/>
+          </button>
         </div>
       </div>
     </div>

@@ -24,16 +24,15 @@ function App() {
     if (user) {
       setQuotes((prevQuotes) => [...prevQuotes, ...user]);
     }
-  }, [user]);
-  if (quoteSectionRef.current) {
-    const { scrollTop, scrollHeight, clientHeight } = quoteSectionRef.current;
-    console.log(scrollTop, scrollHeight, clientHeight);
+  }, [user, page]);
+  if (!user) {
+    return <div>Loading...</div>;
   }
+
 
   if (quoteSectionRef.current) {
     quoteSectionRef.current.addEventListener("scroll", () => {
       const { scrollTop, scrollHeight, clientHeight } = quoteSectionRef.current;
-      console.log(scrollTop, scrollHeight, clientHeight);
       if (clientHeight + scrollTop + 100 >= scrollHeight) {
         setLoading(true);
 
@@ -45,7 +44,9 @@ function App() {
     });
   }
 
-  if (!user) {
+
+
+  if (!quotes.length) {
     return <div>Loading...</div>;
   }
 
@@ -59,9 +60,10 @@ function App() {
           <Account />
         </div>
         <div className="quote-section home" ref={quoteSectionRef}>
-          {quotes.map((quote) => (
+          {quotes.map((quote, index) => (
             <Quote
-              key={quote._id}
+              key={index}
+              id={quote._id}
               author={quote.author}
               quote={quote.content}
               tag={quote.tags[0]}

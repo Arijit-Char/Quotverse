@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   background: black;
-  color: white;
+ 
 }
 .heading {
   height: 8vh;
@@ -10,13 +10,14 @@
   border-bottom: 0.3px solid white;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 .homecontent {
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 91vh;
-
+  color: white;
   .quote-section {
     width: 50%;
     height: 100%;
