@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
+import { FaRegHeart, FaHeart, FaRegComment, FaTimes } from "react-icons/fa";
 import { PiTelegramLogo } from "react-icons/pi";
 import { useDispatch } from "react-redux";
 import { getLikes, getUnLikes } from "../../action/Quote";
@@ -19,8 +19,9 @@ export default function Quote({
   const [liked, setLiked] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [comment, setComment] = useState("");
-
-  const toggleLike = () => {
+  const [expanded, setExpanded] = useState(false);
+  const toggleLike = (event) => {
+    event.stopPropagation();
     setLiked(!liked);
     if (liked) {
       dispatch(getUnLikes(id));
@@ -29,27 +30,48 @@ export default function Quote({
     }
   };
 
-  const shareQuote = () => {
+  const shareQuote = (event) => {
+    event.stopPropagation();
     const shareText = `"${quote}" - ${author}`;
     navigator.share({ text: shareText });
   };
 
   const handleCommentChange = (event) => {
+    event.stopPropagation();
     setComment(event.target.value);
     onCommentChange(id, event);
   };
 
-  const addComment = () => {
+  const addComment = (event) => {
+    event.stopPropagation();
     onAddComment(id);
     setShowCommentForm(false);
   };
 
-  const toggleCommentForm = () => {
+  const toggleCommentForm = (event) => {
+    event.stopPropagation();
     setShowCommentForm(!showCommentForm);
   };
 
+  const toggleExpand = () => {
+    setExpanded(!expanded);
+  };
+
+  const handleClose = (event) => {
+    event.stopPropagation();
+    setExpanded(false);
+  };
+
   return (
-    <div className="quote">
+    <div
+      className={`quote ${expanded ? "expanded" : ""}`}
+      onClick={toggleExpand}
+    >
+      {expanded && (
+        <button className="close-button" onClick={handleClose}>
+          <FaTimes />
+        </button>
+      )}
       <div className="pic">
         <CgProfile className="pp" />
       </div>
@@ -79,6 +101,7 @@ export default function Quote({
               placeholder="Add a comment..."
               value={comment}
               onChange={handleCommentChange}
+              onClick={(event) => event.stopPropagation()}
               className="comment-box"
             ></textarea>
             <button onClick={addComment} className="comment-button">
