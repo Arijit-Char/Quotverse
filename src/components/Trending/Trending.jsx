@@ -16,6 +16,7 @@ export default function Trending({ Tarray }) {
               {index + 1}. {item.name}
             </div>
             <div
+            className="Tdiv2"
               style={{ fontSize: "1rem", fontWeight: "bolder" }}
               key={index + Math.random()}
             >

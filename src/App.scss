@@ -64,8 +64,9 @@
 }
 
 @media screen and (max-width: 760px) {
-  .acc{
-    display: none;
+
+  .hideacc {
+    display: none !important;
   }
   .heading {
     height: 10vh;
@@ -78,19 +79,17 @@
 
   .quote-section {
     width: 80vw !important;
-    margin-bottom: 2rem;
+    margin-top: 5rem;
   }
   .trending-section {
     width: 100%;
   }
 
   .account-section {
-  
-    
     display: flex;
     flex-direction: column;
-    background-color: black; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    background-color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: -250px;
@@ -98,26 +97,28 @@
     width: 250px;
     z-index: 1000;
     transition: left 0.3s ease-in-out;
-    
+
     &.menu-open {
       left: 0;
     }
-    
+
     .account-content {
       margin-top: 20px;
     }
-    
+
     .close-btn {
       margin-top: 20px;
       border: none;
       background-color: transparent;
       cursor: pointer;
-      color: #ffffff; 
+      color: #ffffff;
       font-size: 18px;
       align-self: flex-end;
     }
   }
-  
+  .trending-section {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 576px) {

@@ -23,19 +23,26 @@
   }
 }
 @media screen and (max-width: 760px) {
-  .trending {
-    align-items: flex-start;
-  }
 
+  .trending .theading {
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    align-items: flex-start;
+
+  }
   .theading {
     font-size: 1rem;
   }
 
   .trendingIteams {
     .Tdiv {
-      padding: 0.5rem;
-      font-size: 0.9rem;
+      padding: 0.7rem !important;
+      font-size: 0.55rem !important;
     }
+  }
+  .Tdiv2{
+    font-size: 0.75rem !important;
   }
 }
 
