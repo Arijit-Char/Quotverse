@@ -148,10 +148,10 @@ function App() {
         </div>
       </div>
       <div className="homecontent">
-        <div className="hideacc">  <Account/></div>
-      
+        <div className="hideacc">  <Account /></div>
+
         <div className={`account-section home ${menuOpen ? 'menu-open' : ''}`}>
-          {menuOpen && <div style={{display:"flex",flexDirection:"column"}}><Account />  <Trending Tarray={TrendingArray} /></div>}
+          {menuOpen && <div style={{ display: "flex", flexDirection: "column" }}><Account />  <Trending Tarray={TrendingArray} /></div>}
         </div>
         <div className="quote-section home" ref={quoteSectionRef}>
           {home
