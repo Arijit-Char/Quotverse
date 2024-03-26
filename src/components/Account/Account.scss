@@ -20,11 +20,15 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+  .totallikes{
+    >span{
+      font-size: 1.15rem;
+    }
+  }
 }
 @media screen and (max-width: 760px) {
   .account {
     gap: 1rem;
-    flex-direction: row;
     padding: 1rem;
     .name-user {
       font-size: 0.75rem;

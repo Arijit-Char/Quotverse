@@ -148,7 +148,7 @@ function App() {
         </div>
       </div>
       <div className="homecontent">
-        <Account className="acc"/>
+        <Account className="acc" />
         <div className={`account-section home ${menuOpen ? 'menu-open' : ''}`}>
           {menuOpen && <Account />}
         </div>

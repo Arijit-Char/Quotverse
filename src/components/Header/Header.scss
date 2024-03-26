@@ -40,11 +40,12 @@
   }
 
   .title2 {
-    font-size: 1.5rem !important;
+    font-size: 1.35rem !important;
     font-weight: 600 !important;
     position: relative;
-    left: 10px;
-    top: -54px;
+    left: 8px;
+    top: -4px;
+    padding-right: 5px;
   }
   .extra {
     display: block !important;
@@ -52,7 +53,7 @@
 }
 @media screen and (max-width: 576px) {
   .title2 {
-    font-size: 1.25rem !important;
+    font-size: 1.15rem !important;
     font-weight: 500 !important;
   }
 }

@@ -18,7 +18,7 @@ export default function Account() {
         <div className="username">@arijit_char</div>
       </div>
       <div className="title">Full Stack Developer</div>
-      <div className="totallikes">Total Likes: {likedArray.length}</div>
+      <div className="totallikes">Total Likes: <span style={{color:"red"}}>{likedArray.length}</span></div>
     </div>
   );
 }
