@@ -6,9 +6,19 @@
     height: 100%;
     width: 100%;
     .theading{
-        height: 20%;
+       
+        padding-bottom: 2.5rem;
+        font-size: 1.25rem;
     }
     .trendingIteams{
-        
+        display: flex;
+        flex-direction: column;
+        .Tdiv{
+            padding: 1rem;
+            font-size: 0.75rem;
+            >div{
+                letter-spacing: 1.5px;
+            }
+        }
     }
 }

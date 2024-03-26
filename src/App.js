@@ -19,6 +19,7 @@ function App() {
   const [newLikedArray, setnewLikedArray] = useState([]);
   const [homeLoading, setHomeLoading] = useState(true);
   const [comments, setComments] = useState({});
+  const [loadingtrack, setLoadingTrack] = useState(true);
 
   const quoteSectionRef = useRef(null);
 
@@ -55,23 +56,24 @@ function App() {
   if (!user) {
     return <div>Loading...</div>;
   }
-
-  if (quoteSectionRef.current) {
-    quoteSectionRef.current.addEventListener("scroll", () => {
-      const { scrollTop, scrollHeight, clientHeight } = quoteSectionRef.current;
-      if (clientHeight + scrollTop + 100 >= scrollHeight) {
-        if (!homeLoading) {
-          return;
-        } else {
-          setTimeout(() => {
-            setPage(page + 1);
-            setLoading(false);
-          }, 500);
+  if (loadingtrack) {
+    if (quoteSectionRef.current) {
+      quoteSectionRef.current.addEventListener("scroll", () => {
+        const { scrollTop, scrollHeight, clientHeight } = quoteSectionRef.current;
+        if (clientHeight + scrollTop + 100 >= scrollHeight) {
+          if (!homeLoading) {
+            return;
+          } else {
+            setLoading(true);
+            setTimeout(() => {
+              setPage(page + 1);
+              setLoading(false);
+            }, 1000);
+          }
         }
-      }
-    });
+      });
+    }
   }
-
   if (!quotes.length) {
     return <div>Loading...</div>;
   }
@@ -103,9 +105,9 @@ function App() {
       );
     }
   };
-if(!TrendingArray){
-  return <div>Loading...</div>;
-};
+  if (!TrendingArray) {
+    return <div>Loading...</div>;
+  };
   return (
     <div className="App">
       <div className="heading">
@@ -113,10 +115,11 @@ if(!TrendingArray){
           <div className="title">title</div>
           <div className="homelike">
             <button
-              style={{ color: home ? "Green" : "inherit" }}
+              style={{ color: home ? "#00FFFF" : "inherit" }}
               onClick={() => {
                 setHome(true);
                 setHomeLoading(true);
+                setLoadingTrack(true);
               }}
             >
               <FaHome />
@@ -126,6 +129,7 @@ if(!TrendingArray){
               onClick={() => {
                 setHome(false);
                 setHomeLoading(false);
+                setLoadingTrack(false);
               }}
             >
               <FaHeart />
@@ -162,10 +166,11 @@ if(!TrendingArray){
                 comments={quote.comments || []}
 
               />
+
             ))}
           {loading && <div>Loading...</div>}
         </div>
-        <div className="trending-section home"><Trending Tarray={TrendingArray}/></div>
+        <div className="trending-section home"><Trending Tarray={TrendingArray} /></div>
       </div>
     </div>
   );
