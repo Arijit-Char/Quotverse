@@ -8,6 +8,7 @@ import "./components/Header/Header.scss";
 import { FaHome } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import Trending from "./components/Trending/Trending";
+import { HiMenuAlt3 } from "react-icons/hi";
 
 function App() {
   const likedArray = useSelector((state) => state.likes.likedarray);
@@ -112,7 +113,7 @@ function App() {
     <div className="App">
       <div className="heading">
         <div className="header">
-          <div className="title">title</div>
+          <div className="title title2">Quotverse</div>
           <div className="homelike">
             <button
               style={{ color: home ? "#00FFFF" : "inherit" }}
@@ -135,7 +136,7 @@ function App() {
               <FaHeart />
             </button>
           </div>
-          <div className="extra">extra</div>
+          <div className="extra"><HiMenuAlt3 /></div>
         </div>
       </div>
       <div className="homecontent">

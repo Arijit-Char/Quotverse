@@ -1,16 +1,9 @@
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding-top: 10px;
-
-  //   .header__logo {
-  //     font-size: 24px;
-  //     font-weight: 700;
-  //     color: #333;
-  //   }
-
   .homelike {
     display: flex;
     justify-content: center;
@@ -18,6 +11,7 @@
     align-items: center;
     width: 50%;
     height: 100%;
+    padding-right: 8.5vw;
 
     button {
       padding: 0.5rem 1rem;
@@ -27,5 +21,35 @@
       font-size: 1.4rem;
       cursor: pointer;
     }
+  }
+  .title2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
+}
+@media screen and (max-width: 760px) {
+  .homelike {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+
+    flex-direction: row;
+  }
+
+  .title2 {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    position: relative;
+    left: 10px;
+    top: -54px;
+  }
+  // .extra {
+  //   display: none;
+  // }
+}
+@media screen and (max-width: 576px) {
+  .title2 {
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
   }
 }

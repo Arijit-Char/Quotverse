@@ -20,3 +20,45 @@
     gap: 0.5rem;
   }
 }
+@media screen and (max-width: 760px) {
+  .account {
+    gap: 1rem;
+    flex-direction: row;
+    padding: 1rem;
+    .name-user {
+      font-size: 0.75rem;
+    }
+  }
+  .title {
+    font-size: 0.75rem;
+  }
+  .totallikes{
+    font-size: 0.75rem;
+  }
+  .profilepic {
+    height: 2.5rem !important;
+    width: 2.5rem !important;
+
+    .pp {
+      height: 6vh !important;
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .account {
+    gap: 0.5rem;
+  }
+
+  .profilepic {
+    height: 2rem !important;
+    width: 2rem !important;
+
+    .pp {
+      height: 5vh !important;
+    }
+  }
+
+  .name-user {
+    gap: 0.5rem;
+  }
+}

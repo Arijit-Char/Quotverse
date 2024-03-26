@@ -9,9 +9,24 @@ export default function Trending({ Tarray }) {
       <div className="trendingIteams">
         {firstTenItems.map((item, index) => (
           <div className="Tdiv">
-            <div key={index + Math.random()}>{index+1}.  {item.name}</div>
-            <div key={index + Math.random()}>#{item.slug} </div>
-            <div key={index + Math.random()}>{item.quoteCount} quotes</div>
+            <div
+              style={{ color: "#E0E1E4 ", fontSize: "0.65rem" }}
+              key={index + Math.random()}
+            >
+              {index + 1}. {item.name}
+            </div>
+            <div
+              style={{ fontSize: "1rem", fontWeight: "bolder" }}
+              key={index + Math.random()}
+            >
+              #{item.slug}{" "}
+            </div>
+            <div
+              style={{ color: "#E0E1E4 ", fontSize: "0.65rem" }}
+              key={index + Math.random()}
+            >
+              {item.quoteCount} quotes
+            </div>
           </div>
         ))}
       </div>

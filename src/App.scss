@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 * {
   padding: 0;
   margin: 0;
   background: black;
+  font-family: "Roboto", sans-serif;
 }
 .heading {
   height: 8vh;
@@ -59,4 +61,41 @@
 
 .trending-section {
   width: 12vw;
+}
+
+@media screen and (max-width: 760px) {
+  .heading {
+    height: 10vh;
+    position: fixed;
+  }
+  .homecontent {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .quote-section {
+    width: 90vw !important;
+    margin-bottom: 2rem;
+  }
+  .trending-section {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+  .quote-section {
+    margin-bottom: 2rem;
+  }
+  .trending-section {
+    width: 100%;
+  }
+  .quote-section h1 {
+    font-size: 2rem;
+  }
+  .quote-section p {
+    font-size: 1.25rem;
+  }
 }
