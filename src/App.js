@@ -21,7 +21,7 @@ function App() {
   const [homeLoading, setHomeLoading] = useState(true);
   const [comments, setComments] = useState({});
   const [loadingtrack, setLoadingTrack] = useState(true);
-
+  const [menuOpen, setMenuOpen] = useState(false);
   const quoteSectionRef = useRef(null);
 
   useEffect(() => {
@@ -75,6 +75,8 @@ function App() {
       });
     }
   }
+
+
   if (!quotes.length) {
     return <div>Loading...</div>;
   }
@@ -109,6 +111,10 @@ function App() {
   if (!TrendingArray) {
     return <div>Loading...</div>;
   };
+
+  const handleToggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
   return (
     <div className="App">
       <div className="heading">
@@ -136,12 +142,15 @@ function App() {
               <FaHeart />
             </button>
           </div>
-          <div className="extra"><HiMenuAlt3 /></div>
+
+          <div className="extra" onClick={handleToggleMenu}><HiMenuAlt3 /></div>
+
         </div>
       </div>
       <div className="homecontent">
-        <div className="account-section home">
-          <Account />
+        <Account className="acc"/>
+        <div className={`account-section home ${menuOpen ? 'menu-open' : ''}`}>
+          {menuOpen && <Account />}
         </div>
         <div className="quote-section home" ref={quoteSectionRef}>
           {home
